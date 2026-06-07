@@ -22,6 +22,9 @@ public class FIFORhymer extends DefaultCountingOutRhymer {
      */
     @Override
     public int countOut() {
+        // TODO: Consider extracting FIFO transfer logic into separate methods
+       // to improve readability and maintainability
+
         while (!callCheck())
             temp.countIn(super.countOut());
 
