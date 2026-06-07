@@ -15,8 +15,4 @@ public class HanoiRhymer extends DefaultCountingOutRhymer {
         else
             super.countIn(in);
     }
-
-    public void setTotalRejected(int totalRejected) {
-        this.totalRejected = totalRejected;
-    }
 }
