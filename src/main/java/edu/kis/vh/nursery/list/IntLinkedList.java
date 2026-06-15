@@ -1,27 +1,50 @@
 package edu.kis.vh.nursery.list;
 
 public class IntLinkedList {
+
     private static class Node {
 
-        public final int value;
-        public Node prev, next;
+        private final int value;
+        private Node prev;
+        private Node next;
 
-        public Node(int i) {
-            value = i;
+        public Node(int value) {
+            this.value = value;
         }
 
+        public int getValue() {
+            return value;
+        }
+
+        public Node getPrev() {
+            return prev;
+        }
+
+        public void setPrev(Node prev) {
+            this.prev = prev;
+        }
+
+        public Node getNext() {
+            return next;
+        }
+
+        public void setNext(Node next) {
+            this.next = next;
+        }
     }
 
     protected Node last;
     protected int i;
+
     public static final int DEFAULT_RETURN_VALUE = -1;
+
     public void push(int i) {
-        if (last == null)
+        if (last == null) {
             last = new Node(i);
-        else {
-            last.next = new Node(i);
-            last.next.prev = last;
-            last = last.next;
+        } else {
+            last.setNext(new Node(i));
+            last.getNext().setPrev(last);
+            last = last.getNext();
         }
     }
 
@@ -34,17 +57,19 @@ public class IntLinkedList {
     }
 
     public int top() {
-        if (isEmpty())
+        if (isEmpty()) {
             return DEFAULT_RETURN_VALUE;
-        return last.value;
+        }
+        return last.getValue();
     }
 
     public int pop() {
-        if (isEmpty())
+        if (isEmpty()) {
             return DEFAULT_RETURN_VALUE;
-        int ret = last.value;
-        last = last.prev;
+        }
+
+        int ret = last.getValue();
+        last = last.getPrev();
         return ret;
     }
-
 }
